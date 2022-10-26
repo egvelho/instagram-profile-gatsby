@@ -5,12 +5,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://egvelho.github.io/instagram-profile`,
   },
   graphqlTypegen: true,
-  plugins: [
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {},
-    },
-  ],
+  plugins: ["gatsby-plugin-styled-jsx"],
 };
 
 export default config;

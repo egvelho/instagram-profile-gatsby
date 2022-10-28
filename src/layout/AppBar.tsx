@@ -10,15 +10,15 @@ export function AppBar() {
     <>
       <div className="app-bar">
         <div className="app-bar-content">
-          <div className="row">
+          <div className="row instagram-logo">
             <a href="/">
               <InstagramLogo height="32px" />
             </a>
           </div>
-          <div className="row">
+          <div className="row search-bar">
             <SearchBar />
           </div>
-          <div className="row">
+          <div className="row app-bar-items">
             <AppBarItems />
           </div>
         </div>
@@ -30,6 +30,8 @@ export function AppBar() {
             top: 0;
             left: 0;
             width: 100%;
+            padding: 0 8px;
+            box-sizing: border-box;
           }
 
           .app-bar-content {
@@ -40,12 +42,28 @@ export function AppBar() {
             height: ${appbarHeight};
           }
 
-          .row {
-            flex: 1;
-          }
-
           :global(body) {
             padding-top: ${appbarHeight};
+          }
+
+          @media (max-width: 600px) {
+            .app-bar-items {
+              display: none;
+            }
+
+            .instagram-logo {
+              margin-right: 8px;
+            }
+
+            .search-bar {
+              flex: 1;
+            }
+          }
+
+          @media (min-width: 600px) {
+            .row {
+              flex: 1;
+            }
           }
         `}</style>
       </div>

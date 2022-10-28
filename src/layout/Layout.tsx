@@ -14,13 +14,23 @@ export function Layout(props: LayoutProps) {
       <nav>
         <AppBar />
       </nav>
-      <main>{props.children}</main>
+      <main className="content">{props.children}</main>
       <footer>
         <Footer />
       </footer>
       <nav>
         <BottomNavigation />
       </nav>
+      <style jsx>{`
+        max-width: 960px;
+        margin: auto;
+
+        @media (max-width: 600px) {
+          .content {
+            padding: 16px;
+          }
+        }
+      `}</style>
     </div>
   );
 }

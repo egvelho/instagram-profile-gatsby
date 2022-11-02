@@ -107,10 +107,6 @@ export function ContactForm() {
                 {
                   method: "post",
                   body: form,
-                  mode: "cors",
-                  headers: {
-                    "Access-Control-Allow-Origin": "*",
-                  },
                 }
               );
 

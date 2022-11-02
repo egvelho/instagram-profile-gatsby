@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-// action="https://webhook.site/5520c1bc-cff2-4420-a664-a8d24ac99356"
-
 const initialFormState = {
   name: "",
   email: "",
@@ -22,7 +20,7 @@ function isValidName(name: string) {
 }
 
 function isValidEmail(email: string) {
-  if (!email.includes("@")) {
+  if (!email.match(/^\S+@\S+\.\S+$/)) {
     return "Este email é invalido";
   }
 
@@ -34,7 +32,7 @@ function isValidPhoneNumber(phoneNumber: string) {
     return null;
   }
 
-  if (phoneNumber.length < 6) {
+  if (!phoneNumber.match(/^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/)) {
     return "O número de telefone é invalido";
   }
 
@@ -244,7 +242,7 @@ export function ContactForm() {
         }
 
         @media (max-width: 600px) {
-          #email {
+          .email-container {
             margin-bottom: 12px;
           }
         }

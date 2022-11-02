@@ -14,8 +14,8 @@ export function Feed({ items }: FeedProps) {
   return (
     <div className="feed">
       <div className="feed-grid">
-        {items.map((item) => (
-          <FeedItem {...item} />
+        {items.map((item, index) => (
+          <FeedItem {...item} key={index} />
         ))}
       </div>
       <style jsx>{`

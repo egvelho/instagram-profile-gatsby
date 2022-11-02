@@ -101,20 +101,25 @@ export function ContactForm() {
             form.append("phone-number", formState.phoneNumber);
             form.append("message", formState.message);
 
-            await fetch(
-              "https://webhook.site/5520c1bc-cff2-4420-a664-a8d24ac99356",
-              {
-                method: "post",
-                body: form,
-                mode: "cors",
-                headers: {
-                  "Access-Control-Allow-Origin": "*",
-                },
-              }
-            );
+            try {
+              await fetch(
+                "https://getform.io/f/6b64e079-7983-4fc2-8690-e46504ac1da7",
+                {
+                  method: "post",
+                  body: form,
+                  mode: "cors",
+                  headers: {
+                    "Access-Control-Allow-Origin": "*",
+                  },
+                }
+              );
 
-            alert("Formulário enviado com sucesso!");
-            setFormState(initialFormState);
+              alert("Formulário enviado com sucesso!");
+              setFormState(initialFormState);
+            } catch (error) {
+              console.log(error);
+              alert("Houve um erro ao enviar o formulário");
+            }
           }
         }}
       >

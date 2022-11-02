@@ -105,7 +105,7 @@ export function ContactForm() {
               await fetch(
                 "https://getform.io/f/6b64e079-7983-4fc2-8690-e46504ac1da7",
                 {
-                  method: "post",
+                  method: "POST",
                   body: form,
                 }
               );

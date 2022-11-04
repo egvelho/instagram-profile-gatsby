@@ -25,14 +25,6 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-source-pg",
-      options: {
-        connectionString: process.env.DATABASE_URL,
-        schema: "public",
-        refetchInterval: 60,
-      },
-    },
-    {
       resolve: `gatsby-transformer-json`,
       options: {
         typeName: `Json`,

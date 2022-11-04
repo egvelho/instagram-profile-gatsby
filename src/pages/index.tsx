@@ -1,27 +1,32 @@
 import React from "react";
+import { graphql, PageProps } from "gatsby";
 import { Layout } from "../layout/Layout";
-import { ProfileHeader } from "../components/ProfileHeader";
+import { ProfileHeader, ProfileHeaderProps } from "../components/ProfileHeader";
 import { Feed } from "../components/Feed";
 
-const items = Array.from({ length: 30 }, (_, index) => ({
-  title: `Title ${index}`,
-  link: `https://google.com/${index}`,
-  image: "https://loremflickr.com/400/400",
-}));
+type Teste = {
+  a: string;
+  b: string;
+};
 
-export default function Home() {
+const teste: Teste = {
+  a: "",
+  b: "",
+};
+
+export default function Home({ data }: PageProps) {
+  const profileHeaderProps = (data as any).json as ProfileHeaderProps;
+  const items = (data as any).allMarkdownRemark.nodes.map(
+    ({ frontmatter, fields }: any) => ({
+      ...frontmatter,
+      link: `/posts/${fields.slug}`,
+      image: "https://loremflickr.com/400/400",
+    })
+  );
   return (
     <Layout>
       <header>
-        <ProfileHeader
-          avatar="https://eduardovelho.com/images/egvelho.jpg"
-          bio="Lorem ipsufgndsgiof didfgmjidfogmdfg Lorem ipsufgndsgiof didfgmjidfogmdfg Lorem ipsufgndsgiof didfgmjidfogmdfg Lorem ipsufgndsgiof didfgmjidfogmdfg"
-          link="https://google.com"
-          name="Eduardo Velho"
-          publishCount={90}
-          role="Professor"
-          username="egvelho"
-        />
+        <ProfileHeader {...profileHeaderProps} />
       </header>
       <div className="feed-container">
         <Feed items={items} />
@@ -29,3 +34,29 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const pageQuery = graphql`
+  {
+    json {
+      avatar
+      bio
+      link
+      name
+      publishCount
+      role
+      username
+    }
+    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
+      nodes {
+        fields {
+          slug
+        }
+        frontmatter {
+          author
+          date
+          title
+        }
+      }
+    }
+  }
+`;

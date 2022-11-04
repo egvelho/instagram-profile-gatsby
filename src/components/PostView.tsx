@@ -26,9 +26,10 @@ export function PostView({
           <Avatar src={authorAvatar} size="48px" />
           <span>{authorUsername}</span>
         </div>
-        <div className="content-item">
-          <p>{content}</p>
-        </div>
+        <div
+          className="content-item"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
         <div className="content-item">
           <time dateTime={publishDate.toJSON()}>
             {publishDate.toLocaleDateString("pt-br")}

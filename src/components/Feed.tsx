@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 
 export type FeedProps = {
   items: FeedItemProps[];
@@ -41,7 +42,7 @@ export function Feed({ items }: FeedProps) {
 
 function FeedItem({ image, link, title }: FeedItemProps) {
   return (
-    <a href={link}>
+    <Link to={link}>
       <img src={image} alt={title} />
       <style jsx>{`
         img {
@@ -49,6 +50,6 @@ function FeedItem({ image, link, title }: FeedItemProps) {
           height: 100%;
         }
       `}</style>
-    </a>
+    </Link>
   );
 }

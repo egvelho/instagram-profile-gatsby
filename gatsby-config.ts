@@ -4,7 +4,6 @@ import type { GatsbyConfig } from "gatsby";
 dotenv.config();
 
 const config: GatsbyConfig = {
-  pathPrefix: "/instagram-profile",
   siteMetadata: {
     siteUrl: `https://egvelho.github.io/instagram-profile`,
   },

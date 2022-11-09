@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 import { GrFavorite, GrHomeRounded } from "react-icons/gr";
 import { Avatar } from "../components/Avatar";
 
@@ -7,14 +9,22 @@ const bottomNavigationHeight = "48px";
 export function BottomNavigation() {
   return (
     <div className="bottom-navigation">
-      <a className="item" href="/">
+      <Link className="item" to="/">
         <GrFavorite size="22px" />
-      </a>
-      <a className="item" href="/">
+      </Link>
+      <Link className="item" to="/">
         <GrHomeRounded size="22px" />
-      </a>
+      </Link>
       <span className="item">
-        <Avatar src="https://eduardovelho.com/images/egvelho.jpg" size="36px" />
+        <StaticImage
+          src="https://eduardovelho.com/images/egvelho.jpg"
+          alt=""
+          width={36}
+          height={36}
+          style={{
+            borderRadius: "calc(36px / 2)",
+          }}
+        />
       </span>
       <style jsx>{`
         .bottom-navigation {

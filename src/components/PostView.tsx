@@ -1,9 +1,10 @@
 import React from "react";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { Avatar } from "./Avatar";
 
 export type PostView = {
-  image: string;
-  authorAvatar: string;
+  image?: IGatsbyImageData;
+  authorAvatar?: IGatsbyImageData;
   authorUsername: string;
   content: string;
   publishDate: Date;
@@ -19,11 +20,11 @@ export function PostView({
   return (
     <div className="post-view">
       <div className="image-container row">
-        <img src={image} />
+        {image && <GatsbyImage image={image} alt="" />}
       </div>
       <div className="content-container row">
         <div className="content-item avatar-container">
-          <Avatar src={authorAvatar} size="48px" />
+          {authorAvatar && <Avatar image={authorAvatar} size="48px" />}
           <span>{authorUsername}</span>
         </div>
         <div

@@ -1,12 +1,10 @@
 import React from "react";
-import { graphql, PageProps } from "gatsby";
+import { PageProps, graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
-import { Layout } from "../layout/Layout";
-import { ProfileHeader, ProfileHeaderProps } from "../components/ProfileHeader";
 import { Feed } from "../components/Feed";
+import { Layout } from "../layout/Layout";
 
-export default function Home({ data }: PageProps) {
-  const profileHeaderProps = (data as any).json as ProfileHeaderProps;
+export default function FeedPage({ data }: PageProps) {
   const pagination = (data as any).allMarkdownRemark.pageInfo;
   const items = (data as any).allMarkdownRemark.nodes.map(
     ({ frontmatter, fields }: any) => ({
@@ -15,37 +13,34 @@ export default function Home({ data }: PageProps) {
       image: getImage(frontmatter.image.childImageSharp),
     })
   );
+
   return (
     <Layout>
-      <header>
-        <ProfileHeader
-          {...profileHeaderProps}
-          publishCount={(data as any).allMarkdownRemark.pageInfo.totalCount}
-        />
-      </header>
-      <div className="feed-container">
+      <div className="page">
         <Feed items={items} pagination={pagination} />
+        <style jsx>{`
+          .page {
+            margin-top: 1em;
+          }
+          @media (min-width: 960px) {
+            .page {
+              margin-top: 22px !important;
+            }
+          }
+        `}</style>
       </div>
     </Layout>
   );
 }
 
 export const pageQuery = graphql`
-  {
-    json {
-      avatar
-      bio
-      link
-      name
-      role
-      username
-    }
+  query GetPagePosts($skip: Int!, $limit: Int!) {
     allMarkdownRemark(
-      limit: 15
+      limit: $limit
+      skip: $skip
       sort: { fields: frontmatter___date, order: DESC }
     ) {
       pageInfo {
-        totalCount
         currentPage
         pageCount
         hasNextPage
@@ -56,20 +51,21 @@ export const pageQuery = graphql`
           slug
         }
         frontmatter {
-          author
-          date
-          title
           image {
             childImageSharp {
               gatsbyImageData(
-                formats: [WEBP, JPG]
                 width: 200
                 height: 200
                 layout: CONSTRAINED
+                formats: [JPG, WEBP]
               )
             }
           }
+          slug
+          title
+          date
         }
+        id
       }
     }
   }

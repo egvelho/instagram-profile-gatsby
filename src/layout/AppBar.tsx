@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { InstagramLogo } from "../components/InstagramLogo";
 import { SearchBar } from "../components/SearchBar";
 import { AppBarItems } from "../components/AppBarItems";
@@ -11,9 +12,9 @@ export function AppBar() {
       <div className="app-bar">
         <div className="app-bar-content">
           <div className="row instagram-logo">
-            <a href="/">
+            <Link to="/">
               <InstagramLogo height="32px" />
-            </a>
+            </Link>
           </div>
           <div className="row search-bar">
             <SearchBar />
@@ -32,6 +33,7 @@ export function AppBar() {
             width: 100%;
             padding: 0 8px;
             box-sizing: border-box;
+            z-index: 1;
           }
 
           .app-bar-content {

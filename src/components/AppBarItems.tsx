@@ -1,4 +1,5 @@
 import React from "react";
+import { StaticImage } from "gatsby-plugin-image";
 import { GrFavorite, GrHomeRounded } from "react-icons/gr";
 import { Avatar } from "./Avatar";
 
@@ -12,7 +13,15 @@ export function AppBarItems() {
         <GrHomeRounded size="22px" />
       </a>
       <span className="item">
-        <Avatar src="https://eduardovelho.com/images/egvelho.jpg" size="36px" />
+        <StaticImage
+          src="https://eduardovelho.com/images/egvelho.jpg"
+          alt=""
+          width={36}
+          height={36}
+          style={{
+            borderRadius: "calc(36px / 2)",
+          }}
+        />
       </span>
       <style jsx>{`
         .app-bar-items {

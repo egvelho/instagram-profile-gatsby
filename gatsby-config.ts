@@ -7,6 +7,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     siteUrl: `https://egvelho.github.io/instagram-profile`,
   },
+  pathPrefix: "/instagram-profile",
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-styled-jsx",

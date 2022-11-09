@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { ContactForm } from "../components/ContactForm";
 
 export function Footer() {
@@ -7,10 +8,10 @@ export function Footer() {
       <ContactForm />
       <div className="footer-links">
         <div className="item">
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </div>
         <div className="item">
-          <a href="/#contato">Contato</a>
+          <Link to="/#contato">Contato</Link>
         </div>
       </div>
       <style jsx>{`

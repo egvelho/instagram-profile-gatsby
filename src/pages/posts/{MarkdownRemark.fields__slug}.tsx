@@ -74,7 +74,7 @@ export const Head = ({ data }: HeadProps) => {
     <MetaHead
       title={title}
       description={`Publicação de ${author}`}
-      image={image}
+      image={image.childImageSharp.gatsbyImageData.images.fallback.src}
     />
   );
 };

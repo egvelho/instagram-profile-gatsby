@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const initialFormState = {
   name: "",
@@ -70,6 +70,7 @@ function ErrorMessage({ message }: { message: string | null }) {
 }
 
 export function ContactForm() {
+  const [isDirty, setIsDirty] = useState(false);
   const [formState, setFormState] = useState(initialFormState);
   const validName = isValidName(formState.name);
   const validPhoneNumber = isValidPhoneNumber(formState.phoneNumber);
@@ -82,43 +83,58 @@ export function ContactForm() {
     validEmail === null &&
     validMessage === null;
 
+  useEffect(() => {
+    if (
+      formState.name.length > 0 ||
+      formState.email.length > 0 ||
+      formState.message.length > 0 ||
+      formState.phoneNumber.length > 0
+    ) {
+      setIsDirty(true);
+    }
+  }, [formState.name]);
+
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setIsDirty(true);
+
+    if (isFormValid) {
+      const form = new FormData();
+      form.append("name", formState.name);
+      form.append("email", formState.email);
+      form.append("phone-number", formState.phoneNumber);
+      form.append("message", formState.message);
+
+      try {
+        await fetch(
+          "https://getform.io/f/6b64e079-7983-4fc2-8690-e46504ac1da7",
+          {
+            method: "POST",
+            body: form,
+          }
+        );
+
+        alert("Formulário enviado com sucesso!");
+        setFormState(initialFormState);
+      } catch (error) {
+        console.log(error);
+        alert("Houve um erro ao enviar o formulário");
+      }
+    }
+  }
+
   return (
     <div className="contact-form-container">
-      <h1 className="form-title">Entrar em contato</h1>
+      <h2 className="form-title">Entrar em contato</h2>
       <form
         noValidate
         className="contact-form"
         method="post"
-        onSubmit={async (event) => {
-          event.preventDefault();
-
-          if (isFormValid) {
-            const form = new FormData();
-            form.append("name", formState.name);
-            form.append("email", formState.email);
-            form.append("phone-number", formState.phoneNumber);
-            form.append("message", formState.message);
-
-            try {
-              await fetch(
-                "https://getform.io/f/6b64e079-7983-4fc2-8690-e46504ac1da7",
-                {
-                  method: "POST",
-                  body: form,
-                }
-              );
-
-              alert("Formulário enviado com sucesso!");
-              setFormState(initialFormState);
-            } catch (error) {
-              console.log(error);
-              alert("Houve um erro ao enviar o formulário");
-            }
-          }
-        }}
+        onSubmit={onSubmit}
       >
         <div className="row">
           <div className="field-container">
+            <label htmlFor="fullname">Nome completo</label>
             <input
               type="text"
               name="fullname"
@@ -130,11 +146,12 @@ export function ContactForm() {
                 setFormState({ ...formState, name: event.target.value })
               }
             />
-            <ErrorMessage message={validName} />
+            <ErrorMessage message={isDirty ? validName : null} />
           </div>
         </div>
         <div className="row">
           <div className="field-container email-container">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               name="email"
@@ -146,25 +163,27 @@ export function ContactForm() {
                 setFormState({ ...formState, email: event.target.value })
               }
             />
-            <ErrorMessage message={validEmail} />
+            <ErrorMessage message={isDirty ? validEmail : ""} />
           </div>
           <div className="field-container phone-number-container">
+            <label htmlFor="phone-number">Celular</label>
             <input
               type="tel"
               name="phone-number"
               id="phone-number"
               className="field"
-              placeholder="Celular"
+              placeholder="Celular (opcional)"
               value={formState.phoneNumber}
               onChange={(event) =>
                 setFormState({ ...formState, phoneNumber: event.target.value })
               }
             />
-            <ErrorMessage message={validPhoneNumber} />
+            <ErrorMessage message={isDirty ? validPhoneNumber : ""} />
           </div>
         </div>
         <div className="row">
           <div className="field-container">
+            <label htmlFor="message">Mensagem</label>
             <textarea
               name="message"
               id="message"
@@ -176,7 +195,7 @@ export function ContactForm() {
                 setFormState({ ...formState, message: event.target.value })
               }
             />
-            <ErrorMessage message={validMessage} />
+            <ErrorMessage message={isDirty ? validMessage : ""} />
           </div>
         </div>
         <div className="row">

@@ -28,9 +28,9 @@ export function ProfileHeader({
         </div>
       </div>
       <div className="row">
-        <div className="username item">
+        <h2 className="username item">
           <span>{username}</span>
-        </div>
+        </h2>
         <div className="publish-container item">
           <span className="publish-count">{publishCount}</span>{" "}
           <span>publicações</span>

@@ -43,7 +43,7 @@ const config: GatsbyConfig = {
         name: title,
         short_name: title,
         start_url: "/instagram-profile",
-        background_color: "#f0f0f0",
+        background_color: "#eee",
         theme_color: "#fff",
         display: "standalone",
         icon: "src/images/icon.png",

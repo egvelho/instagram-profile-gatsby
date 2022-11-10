@@ -18,6 +18,9 @@ export default function FeedPage({ data }: PageProps) {
   return (
     <Layout>
       <article className="page">
+        <h2 className="title">
+          Página {pagination.currentPage} de {pagination.pageCount}
+        </h2>
         <Feed items={items} pagination={pagination} />
         <style jsx>{`
           .page {

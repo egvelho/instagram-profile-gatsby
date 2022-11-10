@@ -13,7 +13,9 @@ export function AppBar() {
         <div className="app-bar-content">
           <div className="row instagram-logo">
             <Link to="/">
-              <InstagramLogo height="32px" />
+              <h1>
+                <InstagramLogo height="32px" />
+              </h1>
             </Link>
           </div>
           <div className="row search-bar">

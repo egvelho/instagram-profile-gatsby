@@ -5,15 +5,19 @@ import { ContactForm } from "../components/ContactForm";
 export function Footer() {
   return (
     <div className="footer">
-      <ContactForm />
-      <div className="footer-links">
+      <section>
+        <ContactForm />
+      </section>
+      <section className="footer-links">
         <div className="item">
-          <Link to="/">Home</Link>
+          <Link to="/" title="Ir para home">
+            Home
+          </Link>
         </div>
-        <div className="item">
+        <div className="item" title="Acessar formulário de contato">
           <Link to="/#contato">Contato</Link>
         </div>
-      </div>
+      </section>
       <style jsx>{`
         .footer {
           padding: 32px 0;

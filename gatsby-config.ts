@@ -44,7 +44,7 @@ const config: GatsbyConfig = {
       options: {
         name: title,
         short_name: title,
-        start_url: pathPrefix,
+        start_url: "/",
         background_color: "#eee",
         theme_color: "#fff",
         display: "standalone",

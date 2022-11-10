@@ -76,7 +76,7 @@ export const Head = ({ data }: HeadProps) => {
       title={title}
       description={`Publicação de ${author}`}
       image={image.childImageSharp.gatsbyImageData.images.fallback.src}
-      path={`posts/${slug}`}
+      path={`/posts/${slug}`}
     />
   );
 };

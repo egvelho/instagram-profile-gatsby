@@ -6,16 +6,16 @@ import { Avatar } from "./Avatar";
 export function AppBarItems() {
   return (
     <div className="app-bar-items">
-      <a className="item" href="/">
-        <GrFavorite size="22px" />
+      <a className="item" href="/" title="Ver favoritos">
+        <GrFavorite size="22px" aria-label="Favoritos" />
       </a>
-      <a className="item" href="/">
-        <GrHomeRounded size="22px" />
+      <a className="item" href="/" title="Ir para home">
+        <GrHomeRounded size="22px" aria-label="Home" />
       </a>
       <span className="item">
         <StaticImage
           src="https://eduardovelho.com/images/egvelho.jpg"
-          alt=""
+          alt="Foto de egvelho"
           width={36}
           height={36}
           style={{

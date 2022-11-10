@@ -1,8 +1,9 @@
 import React from "react";
+import { graphql, PageProps, HeadProps } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import { Layout } from "../../layout/Layout";
 import { PostView } from "../../components/PostView";
-import { graphql, PageProps } from "gatsby";
+import { MetaHead } from "../../components/MetaHead";
 
 export default function Post({ data }: PageProps) {
   const {
@@ -11,7 +12,7 @@ export default function Post({ data }: PageProps) {
   } = (data as any).markdownRemark;
   return (
     <Layout>
-      <div className="post-page">
+      <article className="post-page">
         <PostView
           authorAvatar={getImage(authorImage.childImageSharp)}
           authorUsername={author}
@@ -19,7 +20,7 @@ export default function Post({ data }: PageProps) {
           image={getImage(image.childImageSharp)}
           publishDate={new Date(date)}
         />
-      </div>
+      </article>
       <style jsx>{`
         .post-page {
           padding: 36px 0;
@@ -53,7 +54,6 @@ export const pageQuery = graphql`
         authorImage {
           childImageSharp {
             gatsbyImageData(
-              aspectRatio: 1
               height: 64
               width: 64
               layout: CONSTRAINED
@@ -65,3 +65,16 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export const Head = ({ data }: HeadProps) => {
+  const {
+    frontmatter: { author, date, title, image },
+  } = (data as any).markdownRemark;
+  return (
+    <MetaHead
+      title={title}
+      description={`Publicação de ${author}`}
+      image={image}
+    />
+  );
+};

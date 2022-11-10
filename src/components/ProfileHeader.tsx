@@ -24,7 +24,7 @@ export function ProfileHeader({
     <div className="profile-header">
       <div className="row">
         <div className="avatar item">
-          <Avatar src={avatar} size="128px" />
+          <Avatar src={avatar} size="128px" alt={`Foto de ${username}`} />
         </div>
       </div>
       <div className="row">
@@ -45,7 +45,9 @@ export function ProfileHeader({
           <p>{bio}</p>
         </div>
         <div className="link item">
-          <a href={link}>{new URL(link).host}</a>
+          <a href={link} title={`Foto de ${name}`} target="__blank">
+            {new URL(link).host}
+          </a>
         </div>
       </div>
       <style jsx>{`

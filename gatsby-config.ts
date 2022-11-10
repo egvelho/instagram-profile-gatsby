@@ -3,8 +3,14 @@ import type { GatsbyConfig } from "gatsby";
 
 dotenv.config();
 
+const title = "Instagram clone";
+
 const config: GatsbyConfig = {
   siteMetadata: {
+    title,
+    description: "Um site baseado na interface do Instagram",
+    image: "/icon.png",
+    keywords: ["Instagram", "Clone", "Projeto", "Infnet"],
     siteUrl: `https://egvelho.github.io/instagram-profile`,
   },
   pathPrefix: "/instagram-profile",
@@ -31,10 +37,25 @@ const config: GatsbyConfig = {
         typeName: `Json`,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: title,
+        short_name: title,
+        start_url: "/instagram-profile",
+        background_color: "#f0f0f0",
+        theme_color: "#fff",
+        display: "standalone",
+        icon: "src/images/icon.png",
+        crossOrigin: `use-credentials`,
+      },
+    },
     "gatsby-transformer-remark",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-robots-txt",
   ],
 };
 

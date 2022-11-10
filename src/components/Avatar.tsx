@@ -3,16 +3,19 @@ import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 export type AvatarProps = {
   size?: number | string;
+  alt: string;
 } & ({ src: string } | { image: IGatsbyImageData });
 
-export function Avatar({ size = "24px", ...data }: AvatarProps) {
+export function Avatar({ size = "24px", alt, ...data }: AvatarProps) {
   return (
     <div className="avatar">
-      {"src" in data && <img src={data.src} />}
+      {"src" in data && (
+        <img src={data.src} width={size} height={size} alt={alt} />
+      )}
       {"image" in data && (
         <GatsbyImage
           image={{ ...data.image, layout: "fullWidth" }}
-          alt=""
+          alt={alt}
           style={{
             borderRadius: `calc(${size} / 2)`,
           }}

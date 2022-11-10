@@ -23,10 +23,16 @@ export function PostView({
         {image && <GatsbyImage image={image} alt="" />}
       </div>
       <div className="content-container row">
-        <div className="content-item avatar-container">
-          {authorAvatar && <Avatar image={authorAvatar} size="48px" />}
+        <header className="content-item avatar-container">
+          {authorAvatar && (
+            <Avatar
+              image={authorAvatar}
+              alt={`Foto de ${authorUsername}`}
+              size="48px"
+            />
+          )}
           <span>{authorUsername}</span>
-        </div>
+        </header>
         <div
           className="content-item"
           dangerouslySetInnerHTML={{ __html: content }}

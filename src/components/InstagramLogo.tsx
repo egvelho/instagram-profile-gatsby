@@ -8,9 +8,12 @@ export type InstagramLogoProps = {
 export function InstagramLogo({ width, height }: InstagramLogoProps) {
   return (
     <svg
+      aria-label="Instagram"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 512 146"
+      width="112.22"
+      height="32"
       style={{ width, height, marginTop: "8px" }}
     >
       <g fill="#343433">

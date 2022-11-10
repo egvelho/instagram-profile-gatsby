@@ -9,16 +9,16 @@ const bottomNavigationHeight = "48px";
 export function BottomNavigation() {
   return (
     <div className="bottom-navigation">
-      <Link className="item" to="/">
-        <GrFavorite size="22px" />
+      <Link className="item" to="/" title="Ver favoritos">
+        <GrFavorite size="22px" aria-label="Favoritos" />
       </Link>
-      <Link className="item" to="/">
-        <GrHomeRounded size="22px" />
+      <Link className="item" to="/" title="Ir para home">
+        <GrHomeRounded size="22px" aria-label="Home" />
       </Link>
       <span className="item">
         <StaticImage
           src="https://eduardovelho.com/images/egvelho.jpg"
-          alt=""
+          alt="Foto de egvelho"
           width={36}
           height={36}
           style={{

@@ -1,9 +1,10 @@
 import React from "react";
-import { graphql, PageProps } from "gatsby";
+import { graphql, PageProps, HeadProps } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import { Layout } from "../layout/Layout";
 import { ProfileHeader, ProfileHeaderProps } from "../components/ProfileHeader";
 import { Feed } from "../components/Feed";
+import { MetaHead } from "../components/MetaHead";
 
 export default function Home({ data }: PageProps) {
   const profileHeaderProps = (data as any).json as ProfileHeaderProps;
@@ -17,15 +18,17 @@ export default function Home({ data }: PageProps) {
   );
   return (
     <Layout>
-      <header>
-        <ProfileHeader
-          {...profileHeaderProps}
-          publishCount={(data as any).allMarkdownRemark.pageInfo.totalCount}
-        />
-      </header>
-      <div className="feed-container">
-        <Feed items={items} pagination={pagination} />
-      </div>
+      <article>
+        <header>
+          <ProfileHeader
+            {...profileHeaderProps}
+            publishCount={(data as any).allMarkdownRemark.pageInfo.totalCount}
+          />
+        </header>
+        <section className="feed-container">
+          <Feed items={items} pagination={pagination} />
+        </section>
+      </article>
     </Layout>
   );
 }
@@ -74,3 +77,8 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export const Head = ({ data }: HeadProps) => {
+  const { name, bio } = (data as any).json;
+  return <MetaHead title={`Instagram | ${name}`} description={bio} />;
+};

@@ -81,6 +81,7 @@ function Pagination({
               to={page === 1 ? "/" : `/pages/${page}`}
               key={page}
               className="reset-anchor"
+              title={`Ir para a página ${page}`}
             >
               <span className="pagination-link">{page}</span>
             </Link>
@@ -92,16 +93,21 @@ function Pagination({
           <Link
             to={currentPage - 1 === 1 ? "/" : `/pages/${currentPage - 1}`}
             className="reset-anchor"
+            title="Voltar uma página"
           >
             <span className={"pagination-link"}>
-              <MdArrowLeft size="32px" />
+              <MdArrowLeft size="32px" aria-label="Página anterior" />
             </span>
           </Link>
         )}
         {hasNextPage && (
-          <Link to={`/pages/${currentPage + 1}`} className="reset-anchor">
+          <Link
+            to={`/pages/${currentPage + 1}`}
+            className="reset-anchor"
+            title="Avançar para a próxima página"
+          >
             <span className={"pagination-link"}>
-              <MdArrowRight size="32px" />
+              <MdArrowRight size="32px" aria-label="Próxima página" />
             </span>
           </Link>
         )}

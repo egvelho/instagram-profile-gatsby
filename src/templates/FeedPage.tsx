@@ -1,8 +1,9 @@
 import React from "react";
-import { PageProps, graphql } from "gatsby";
+import { PageProps, HeadProps, graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import { Feed } from "../components/Feed";
 import { Layout } from "../layout/Layout";
+import { MetaHead } from "../components/MetaHead";
 
 export default function FeedPage({ data }: PageProps) {
   const pagination = (data as any).allMarkdownRemark.pageInfo;
@@ -16,7 +17,7 @@ export default function FeedPage({ data }: PageProps) {
 
   return (
     <Layout>
-      <div className="page">
+      <article className="page">
         <Feed items={items} pagination={pagination} />
         <style jsx>{`
           .page {
@@ -28,7 +29,7 @@ export default function FeedPage({ data }: PageProps) {
             }
           }
         `}</style>
-      </div>
+      </article>
     </Layout>
   );
 }
@@ -70,3 +71,13 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export const Head = ({ data }: HeadProps) => {
+  const { currentPage, pageCount } = (data as any).allMarkdownRemark.pageInfo;
+  return (
+    <MetaHead
+      title={`Instagram | Página ${currentPage} de ${pageCount}`}
+      description=""
+    />
+  );
+};

@@ -4,16 +4,18 @@ import type { GatsbyConfig } from "gatsby";
 dotenv.config();
 
 const title = "Instagram clone";
+const pathPrefix = "/instagram-profile";
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title,
     description: "Um site baseado na interface do Instagram",
-    image: "/icon.png",
+    image: `${pathPrefix}/icon.png`,
     keywords: ["Instagram", "Clone", "Projeto", "Infnet"],
-    siteUrl: `https://egvelho.github.io/instagram-profile`,
+    siteUrl: `https://egvelho.github.io`,
+    pathPrefix,
   },
-  pathPrefix: "/instagram-profile",
+  pathPrefix,
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-styled-jsx",
@@ -42,7 +44,7 @@ const config: GatsbyConfig = {
       options: {
         name: title,
         short_name: title,
-        start_url: "/instagram-profile",
+        start_url: pathPrefix,
         background_color: "#eee",
         theme_color: "#fff",
         display: "standalone",

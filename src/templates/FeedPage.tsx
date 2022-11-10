@@ -81,6 +81,7 @@ export const Head = ({ data }: HeadProps) => {
     <MetaHead
       title={`Instagram | Página ${currentPage} de ${pageCount}`}
       description=""
+      path={`/pages/${currentPage}`}
     />
   );
 };

@@ -69,12 +69,14 @@ export const pageQuery = graphql`
 export const Head = ({ data }: HeadProps) => {
   const {
     frontmatter: { author, date, title, image },
+    fields: { slug },
   } = (data as any).markdownRemark;
   return (
     <MetaHead
       title={title}
       description={`Publicação de ${author}`}
       image={image.childImageSharp.gatsbyImageData.images.fallback.src}
+      path={`posts/${slug}`}
     />
   );
 };

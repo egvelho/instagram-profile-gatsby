@@ -5,7 +5,7 @@ export type MetaHeadProps = {
   title?: string;
   description?: string;
   image?: string;
-  url?: string;
+  path?: string;
   keywords?: string[];
   children?: React.ReactNode;
 };
@@ -15,7 +15,7 @@ export function MetaHead({
   description,
   image,
   keywords,
-  url,
+  path,
   children,
 }: MetaHeadProps) {
   const {
@@ -26,6 +26,7 @@ export function MetaHead({
         image: defaultImage,
         keywords: defaultKeywords,
         siteUrl,
+        pathPrefix,
       },
     },
   } = useStaticQuery(graphql`
@@ -37,6 +38,7 @@ export function MetaHead({
           image
           keywords
           siteUrl
+          pathPrefix
         }
       }
     }
@@ -47,7 +49,7 @@ export function MetaHead({
     description: description || defaultDescription,
     image: `${siteUrl}${image || defaultImage}`,
     keywords: keywords || defaultKeywords,
-    url: `${siteUrl}${url || ``}`,
+    url: `${siteUrl}${pathPrefix}${path || ``}`,
   };
 
   return (
